@@ -51,4 +51,4 @@ jobs:
             # Run as a mlflow project
       - name: Run mlflow project calif
         run: |
-          python script.py
+          python california_housing/script.py

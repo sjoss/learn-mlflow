@@ -4,8 +4,15 @@ import pandas as pd
 from sklearn.datasets import fetch_california_housing
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 if __name__ == "__main__":
+   
+ 
+    MLFLOW_TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI")
+    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+    print(MLFLOW_TRACKING_URI)
+ 
     # Initialiser l'expérience MLflow
     mlflow.set_experiment("california_housing_regression")
 

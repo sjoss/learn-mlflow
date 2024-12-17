@@ -52,4 +52,4 @@ jobs:
       - name: Run mlflow project calif
         run: |
 
-          cd california_housing && python scriript.py
+          cd california_housing && python script.py

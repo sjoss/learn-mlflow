@@ -51,7 +51,7 @@ jobs:
             # Run as a mlflow project
       - name: Run mlflow project calif
         with: # Set the secret as an input
-           super_secret: ${{ secrets.MLFLOW }}
+           super_secret: ${{ MLFLOW.MLFLOW_TRACKING_URI }}
         run: |
 
           cd california_housing && python script.py

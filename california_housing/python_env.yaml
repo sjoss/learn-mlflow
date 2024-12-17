@@ -1,0 +1,8 @@
+python: '3.12.3'
+build_dependencies:
+- pip
+dependencies:
+- scikit-learn
+- mlflow
+- pandas
+- seaborn

@@ -47,3 +47,8 @@ jobs:
       - name: Run mlflow project
         run: |
           mlflow run wine_example --env-manager=local
+
+            # Run as a mlflow project
+      - name: Run mlflow project calif
+        run: |
+          python script.py

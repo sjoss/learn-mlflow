@@ -207,7 +207,7 @@ with mlflow.start_run(run_name="data-pipeline"):
         best_run_id = run.info.run_id
 
         # register the model
-        model_uri = f"runs:/758f873092154a7e90ce88cf6766e4ff/best_model"
+        model_uri = f"runs:/9564507cf01b47db8cbf118274e41c2d/best_model"
         registered_model = mlflow.register_model(model_uri, "california_housing_model")
         print(f"Model registered in model registry with name:{registered_model.name}, version: {registered_model.version}")
 

@@ -152,27 +152,27 @@ with mlflow.start_run(run_name="data-pipeline"):
     import numpy as np
 
     with mlflow.start_run(run_name="random_forest_tuning") as run:
-    rf_model = RandomForestRegressor(random_state=42)
-    param_dist = {
-            "n_estimators": np.arange(20, 60),
-            "max_depth": [5, 10, 15, None],
-            "min_samples_split": np.arange(2, 10),
-            "min_samples_leaf": np.arange(1, 5)
-    }
-    rf_random = RandomizedSearchCV(rf_model, param_dist, n_iter=2, cv=3, random_state=42, scoring='neg_mean_squared_error')
-    rf_random.fit(X_train, y_train)
+        rf_model = RandomForestRegressor(random_state=42)
+        param_dist = {
+                "n_estimators": np.arange(20, 60),
+                "max_depth": [5, 10, 15, None],
+                "min_samples_split": np.arange(2, 10),
+                "min_samples_leaf": np.arange(1, 5)
+        }
+        rf_random = RandomizedSearchCV(rf_model, param_dist, n_iter=2, cv=3, random_state=42, scoring='neg_mean_squared_error')
+        rf_random.fit(X_train, y_train)
 
-    best_model = rf_random.best_estimator_
-    best_params = rf_random.best_params_
-    y_pred = best_model.predict(X_test)
-    mse = mean_squared_error(y_test, y_pred)
-    r2 = r2_score(y_test, y_pred)
+        best_model = rf_random.best_estimator_
+        best_params = rf_random.best_params_
+        y_pred = best_model.predict(X_test)
+        mse = mean_squared_error(y_test, y_pred)
+        r2 = r2_score(y_test, y_pred)
 
-    mlflow.log_params(best_params)
-    mlflow.log_metric("mse", mse)
-    mlflow.log_metric("r2", r2)
-    mlflow.sklearn.log_model(best_model, "best_model")
-    print(f"Best Random Forest Model (Tuned): MSE = {mse:.2f}, R2 = {r2:.2f}")
+        mlflow.log_params(best_params)
+        mlflow.log_metric("mse", mse)
+        mlflow.log_metric("r2", r2)
+        mlflow.sklearn.log_model(best_model, "best_model")
+        print(f"Best Random Forest Model (Tuned): MSE = {mse:.2f}, R2 = {r2:.2f}")
 
 
     # In[ ]:

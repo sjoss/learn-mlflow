@@ -41,8 +41,8 @@ import seaborn as sns
 
 # Initialiser l'expérience MLflow
 mlflow.set_experiment("california_housing_regression")
-    with mlflow.start_run(run_name="data-pipeline"):
-        mlflow.set_tag("mlflow.runName", "data-pipeline")
+with mlflow.start_run(run_name="data-pipeline"):
+    mlflow.set_tag("mlflow.runName", "data-pipeline")
 
     with mlflow.start_run(run_name="data_exploration") as run:
         # Charger le jeu de données

@@ -1,7 +1,7 @@
 name: california_housing
 
-conda_env: conda.yaml
-#python_env: python_env.yaml
+#conda_env: conda.yaml
+python_env: python_env.yaml
 entry_points:
   main:
     # parameters:

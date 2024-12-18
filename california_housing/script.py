@@ -44,7 +44,7 @@ mlflow.set_experiment("california_housing_regression")
 with mlflow.start_run(run_name="data-pipeline"):
     mlflow.set_tag("mlflow.runName", "data-pipeline")
 
-    with mlflow.start_run(run_name="data_exploration",nested=true) as run:
+    with mlflow.start_run(run_name="data_exploration",nested=True) as run:
         # Charger le jeu de données
         california = fetch_california_housing(as_frame=True)
         df = california.frame
@@ -82,7 +82,7 @@ with mlflow.start_run(run_name="data-pipeline"):
     from sklearn.preprocessing import StandardScaler
     from sklearn.metrics import accuracy_score, classification_report
 
-    with mlflow.start_run(run_name="logistic_regression_baseline",nested=true) as run:
+    with mlflow.start_run(run_name="logistic_regression_baseline",nested=True) as run:
         # Préparation des données pour la classification (exemple: prix > moyenne devient 1, sinon 0)
         df['target_class'] = (df['MedHouseVal'] > df['MedHouseVal'].mean()).astype(int)
         X = df.drop(['MedHouseVal','target_class'], axis=1)
@@ -132,7 +132,7 @@ with mlflow.start_run(run_name="data-pipeline"):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     for name, model in models.items():
-        with mlflow.start_run(run_name=name,nested=true) as run:
+        with mlflow.start_run(run_name=name,nested=True) as run:
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
 
@@ -151,7 +151,7 @@ with mlflow.start_run(run_name="data-pipeline"):
     from sklearn.model_selection import RandomizedSearchCV
     import numpy as np
 
-    with mlflow.start_run(run_name="random_forest_tuning",nested=true) as run:
+    with mlflow.start_run(run_name="random_forest_tuning",nested=True) as run:
         rf_model = RandomForestRegressor(random_state=42)
         param_dist = {
                 "n_estimators": np.arange(20, 60),
@@ -181,7 +181,7 @@ with mlflow.start_run(run_name="data-pipeline"):
     import mlflow.models
     from mlflow.models.signature import infer_signature
 
-    with mlflow.start_run(run_name="linear_regression_signature",nested=true) as run:
+    with mlflow.start_run(run_name="linear_regression_signature",nested=True) as run:
         model = LinearRegression()
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
@@ -200,7 +200,7 @@ with mlflow.start_run(run_name="data-pipeline"):
 
 
     from mlflow import MlflowClient
-    with mlflow.start_run(run_name="register_best_model",nested=true) as run:
+    with mlflow.start_run(run_name="register_best_model",nested=True) as run:
 
         # Retrieve Best Model Run
         client = MlflowClient()

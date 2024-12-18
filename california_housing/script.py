@@ -9,14 +9,12 @@ import os
 if __name__ == "__main__":
    
  
-    MLFLOW_TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI")
-    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
-    print(MLFLOW_TRACKING_URI)
+    
  
     # Initialiser l'expérience MLflow
     mlflow.set_experiment("california_housing_regression")
 
-    with mlflow.start_run(run_name="data_exploration") as run:
+    with mlflow.start_run(run_name="data_exploration", ) as run:
         # Charger le jeu de données
         california = fetch_california_housing(as_frame=True)
         df = california.frame

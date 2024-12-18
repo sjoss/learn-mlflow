@@ -133,16 +133,16 @@ with mlflow.start_run(run_name="data-pipeline"):
 
     for name, model in models.items():
         with mlflow.start_run(run_name=name) as run:
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
 
-        mse = mean_squared_error(y_test, y_pred)
-        r2 = r2_score(y_test, y_pred)
-        mlflow.log_metric("mse", mse)
-        mlflow.log_metric("r2", r2)
-        mlflow.sklearn.log_model(model, "model")
+            mse = mean_squared_error(y_test, y_pred)
+            r2 = r2_score(y_test, y_pred)
+            mlflow.log_metric("mse", mse)
+            mlflow.log_metric("r2", r2)
+            mlflow.sklearn.log_model(model, "model")
 
-        print(f"{name}: MSE = {mse:.2f}, R2 = {r2:.2f}")
+            print(f"{name}: MSE = {mse:.2f}, R2 = {r2:.2f}")
 
 
     # In[ ]:
